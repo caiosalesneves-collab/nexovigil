@@ -1,13 +1,37 @@
 import type { ReactNode } from 'react'
+import { NavLink } from 'react-router-dom'
 import { CLINICA_FICTICIA, PROFISSIONAIS } from '../data/cenarios'
 import { useEstado } from '../estado/EstadoContext'
 import { BannerPrototipo } from './BannerPrototipo'
 
 const NAV = [
-  { rotulo: 'Cockpit', ativo: true, etapa: '' },
-  { rotulo: 'Agenda de vigilância', ativo: false, etapa: 'Etapa 3' },
-  { rotulo: 'Episódios', ativo: false, etapa: 'Etapa 4' },
+  { rotulo: 'Cockpit', caminho: '/', etapa: '' },
+  { rotulo: 'Agenda de vigilância', caminho: '/agenda', etapa: '' },
+  { rotulo: 'Episódios', caminho: '', etapa: 'Etapa 4' },
 ]
+
+function ItemNav({ item, compacto }: { item: (typeof NAV)[number]; compacto?: boolean }) {
+  const base = compacto ? 'whitespace-nowrap rounded-lg px-3 py-2 text-sm' : 'flex items-center justify-between rounded-lg px-3 py-2.5 text-sm'
+  if (!item.caminho) {
+    return (
+      <div className={`${base} text-slate-500`} aria-disabled="true">
+        {item.rotulo}
+        {!compacto && <span className="rounded bg-white/5 px-1.5 py-0.5 text-[10px] text-slate-500">{item.etapa}</span>}
+      </div>
+    )
+  }
+  return (
+    <NavLink
+      to={item.caminho}
+      end
+      className={({ isActive }) =>
+        `${base} ${isActive ? 'bg-sky-500/15 font-medium text-white' : 'text-slate-300 hover:bg-white/5 hover:text-white'}`
+      }
+    >
+      {item.rotulo}
+    </NavLink>
+  )
+}
 
 function Marca() {
   return (
@@ -51,16 +75,7 @@ export function Layout({ titulo, subtitulo, children }: { titulo: string; subtit
           <p className="mt-1 text-xs text-slate-400">Vigilância pós-procedimento</p>
           <nav className="mt-8 space-y-1" aria-label="Navegação principal">
             {NAV.map((item) => (
-              <div
-                key={item.rotulo}
-                aria-current={item.ativo ? 'page' : undefined}
-                className={`flex items-center justify-between rounded-lg px-3 py-2.5 text-sm ${
-                  item.ativo ? 'bg-sky-500/15 font-medium text-white' : 'text-slate-500'
-                }`}
-              >
-                {item.rotulo}
-                {item.etapa && <span className="rounded bg-white/5 px-1.5 py-0.5 text-[10px] text-slate-500">{item.etapa}</span>}
-              </div>
+              <ItemNav key={item.rotulo} item={item} />
             ))}
           </nav>
           <p className="mt-auto text-xs leading-relaxed text-slate-500">{CLINICA_FICTICIA}</p>
@@ -70,7 +85,11 @@ export function Layout({ titulo, subtitulo, children }: { titulo: string; subtit
           {/* Barra superior compacta (iPad retrato e telas menores) */}
           <div className="flex items-center justify-between bg-[#0c1b33] px-4 py-3 lg:hidden">
             <Marca />
-            <span className="text-xs text-slate-400">Cockpit</span>
+            <nav className="flex gap-1 overflow-x-auto" aria-label="Navegação principal">
+              {NAV.filter((i) => i.caminho).map((item) => (
+                <ItemNav key={item.rotulo} item={item} compacto />
+              ))}
+            </nav>
           </div>
 
           <header className="flex flex-wrap items-end justify-between gap-3 border-b border-slate-200 bg-white px-4 py-4 md:px-6">
