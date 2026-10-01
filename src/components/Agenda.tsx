@@ -1,6 +1,7 @@
 // Etapa 3: agenda mensal de vigilância. Mostra, por dia, procedimentos, checkpoints e alertas.
 
 import { useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { ROTULO_PROCEDIMENTO } from '../config/protocolos'
 import { AGORA } from '../data/episodios'
 import {
@@ -224,7 +225,9 @@ function DetalheDia({ dia, itens, emAcompanhamento }: { dia: Date; itens: ItemAg
               <li key={item.id} className={`border-l-4 px-4 py-3 ${corItem(item).split(' ').filter((c) => c.startsWith('border-l-')).join(' ')}`}>
                 <div className="flex items-start justify-between gap-2">
                   <div className="min-w-0">
-                    <p className="text-sm font-medium text-slate-900">{ep.paciente.nome}</p>
+                    <Link to={`/episodio/${ep.id}`} className="text-sm font-medium text-sky-800 underline-offset-2 hover:underline">
+                      {ep.paciente.nome}
+                    </Link>
                     <p className="text-xs text-slate-500">
                       {ROTULO_PROCEDIMENTO[ep.procedimento.tipo]}, {ep.procedimento.regiao}
                     </p>

@@ -175,6 +175,7 @@ function gerarEpisodio(c: Cenario, indice: number): Episodio {
     nivel: avaliacao.nivel,
     alerta,
     auditoria,
+    anotacoes: [],
   }
 }
 

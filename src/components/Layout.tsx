@@ -7,7 +7,7 @@ import { BannerPrototipo } from './BannerPrototipo'
 const NAV = [
   { rotulo: 'Cockpit', caminho: '/', etapa: '' },
   { rotulo: 'Agenda de vigilância', caminho: '/agenda', etapa: '' },
-  { rotulo: 'Episódios', caminho: '', etapa: 'Etapa 4' },
+  { rotulo: 'Episódios', caminho: '/episodios', etapa: '' },
 ]
 
 function ItemNav({ item, compacto }: { item: (typeof NAV)[number]; compacto?: boolean }) {
@@ -23,7 +23,7 @@ function ItemNav({ item, compacto }: { item: (typeof NAV)[number]; compacto?: bo
   return (
     <NavLink
       to={item.caminho}
-      end
+      end={item.caminho === '/'}
       className={({ isActive }) =>
         `${base} ${isActive ? 'bg-sky-500/15 font-medium text-white' : 'text-slate-300 hover:bg-white/5 hover:text-white'}`
       }

@@ -2,6 +2,7 @@
 // Alertas indicam prioridade de avaliação, nunca probabilidade diagnóstica.
 
 import type { ReactNode } from 'react'
+import { Link } from 'react-router-dom'
 import { ROTULO_PROCEDIMENTO } from '../config/protocolos'
 import { PROFISSIONAIS } from '../data/cenarios'
 import { useEstado } from '../estado/EstadoContext'
@@ -83,9 +84,9 @@ function CartaoAlerta({ ep, fixado }: { ep: EpisodioComAlerta; fixado?: boolean 
         <div className="flex min-w-0 items-center gap-3">
           <Avatar nome={paciente.nome} />
           <div className="min-w-0">
-            <p className="font-medium text-slate-900">
+            <Link to={`/episodio/${ep.id}`} className="font-medium text-slate-900 underline-offset-2 hover:text-sky-700 hover:underline">
               {paciente.nome}, {paciente.idade} anos
-            </p>
+            </Link>
             <p className="text-sm text-slate-500">
               {ROTULO_PROCEDIMENTO[procedimento.tipo]}, {procedimento.regiao}
             </p>
@@ -124,7 +125,15 @@ function CartaoAlerta({ ep, fixado }: { ep: EpisodioComAlerta; fixado?: boolean 
             <span className="font-medium text-red-700">Sem responsável</span>
           )}
         </p>
-        {!responsavel && <BotaoAssumir episodioId={ep.id} destaque={fixado} />}
+        <div className="flex flex-wrap gap-2">
+          <Link
+            to={`/episodio/${ep.id}`}
+            className="inline-flex min-h-11 items-center rounded-lg px-3 text-sm font-medium text-sky-700 hover:bg-sky-50"
+          >
+            Abrir ficha
+          </Link>
+          {!responsavel && <BotaoAssumir episodioId={ep.id} destaque={fixado} />}
+        </div>
       </div>
     </article>
   )

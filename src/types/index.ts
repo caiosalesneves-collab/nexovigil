@@ -126,6 +126,14 @@ export interface EventoAuditoria {
   acao: string
 }
 
+// Anotação livre do profissional. Fica separada da trilha de auditoria.
+export interface AnotacaoProfissional {
+  id: string
+  dataHora: string
+  autor: string
+  texto: string
+}
+
 export interface Episodio {
   id: string
   paciente: Paciente
@@ -135,4 +143,5 @@ export interface Episodio {
   nivel: NivelAlerta
   alerta?: Alerta // ausente quando o nível é verde
   auditoria: EventoAuditoria[]
+  anotacoes: AnotacaoProfissional[]
 }
