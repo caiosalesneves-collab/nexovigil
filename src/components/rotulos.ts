@@ -52,3 +52,37 @@ export function formatarDataHora(iso: string): string {
     minute: '2-digit',
   })
 }
+
+// Visual inspirado no pitch deck: etiqueta clara com ponto colorido e borda lateral no cartão.
+export const ETIQUETA_NIVEL: Record<NivelAlerta, string> = {
+  vermelho: 'Prioridade máxima',
+  laranja: 'Avaliar',
+  amarelo: 'Atenção',
+  verde: 'Sem alerta',
+}
+
+export const PILULA_NIVEL: Record<NivelAlerta, string> = {
+  vermelho: 'bg-red-50 text-red-700 ring-red-200',
+  laranja: 'bg-orange-50 text-orange-700 ring-orange-200',
+  amarelo: 'bg-amber-50 text-amber-800 ring-amber-200',
+  verde: 'bg-emerald-50 text-emerald-700 ring-emerald-200',
+}
+
+export const PONTO_NIVEL: Record<NivelAlerta, string> = {
+  vermelho: 'bg-red-500',
+  laranja: 'bg-orange-500',
+  amarelo: 'bg-amber-400',
+  verde: 'bg-emerald-500',
+}
+
+export const BORDA_NIVEL: Record<NivelAlerta, string> = {
+  vermelho: 'border-l-red-500',
+  laranja: 'border-l-orange-500',
+  amarelo: 'border-l-amber-400',
+  verde: 'border-l-emerald-500',
+}
+
+export function iniciais(nome: string): string {
+  const partes = nome.split(' ').filter(Boolean)
+  return ((partes[0]?.[0] ?? '') + (partes[partes.length - 1]?.[0] ?? '')).toUpperCase()
+}
