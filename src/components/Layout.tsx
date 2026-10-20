@@ -35,11 +35,9 @@ function ItemNav({ item, compacto }: { item: (typeof NAV)[number]; compacto?: bo
 
 function Marca() {
   return (
-    <div className="flex items-center gap-2">
-      <svg viewBox="0 0 24 24" className="h-5 w-5 text-sky-400" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
-        <path d="M2 12h4l2-5 4 10 2-5h8" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-      <span className="text-lg font-semibold tracking-tight text-white">PÓSPECTRA</span>
+    <div className="flex items-center gap-2.5">
+      <img src={`${import.meta.env.BASE_URL}simbolo.png`} alt="" className="h-8 w-8" />
+      <span className="text-lg font-bold tracking-wide text-[#ede6da]">PÓSPECTRA</span>
     </div>
   )
 }
