@@ -1,4 +1,7 @@
-# NexoVigil: protótipo navegável
+# PÓSPECTRA: protótipo navegável
+
+Slogan: "Uma visão completa do pós-procedimento." (na interface, sem travessão; regra 6)
+Nome anterior: NexoVigil.
 
 Plataforma B2B de vigilância pós-procedimento para clínicas de harmonização facial.
 Este repositório é um PROTÓTIPO DEMONSTRATIVO para validar o conceito com profissionais da área.

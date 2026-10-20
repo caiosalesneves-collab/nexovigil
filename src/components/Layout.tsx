@@ -39,7 +39,7 @@ function Marca() {
       <svg viewBox="0 0 24 24" className="h-5 w-5 text-sky-400" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
         <path d="M2 12h4l2-5 4 10 2-5h8" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
-      <span className="text-lg font-semibold tracking-tight text-white">NexoVigil</span>
+      <span className="text-lg font-semibold tracking-tight text-white">PÓSPECTRA</span>
     </div>
   )
 }
@@ -72,7 +72,7 @@ export function Layout({ titulo, subtitulo, children }: { titulo: string; subtit
         {/* Menu lateral (desktop e iPad paisagem) */}
         <aside className="hidden lg:sticky lg:top-9 lg:flex lg:h-[calc(100vh-2.25rem)] lg:w-60 lg:flex-col lg:bg-[#0c1b33] lg:px-4 lg:py-5">
           <Marca />
-          <p className="mt-1 text-xs text-slate-400">Vigilância pós-procedimento</p>
+          <p className="mt-1 text-xs text-slate-400">Uma visão completa do pós-procedimento</p>
           <nav className="mt-8 space-y-1" aria-label="Navegação principal">
             {NAV.map((item) => (
               <ItemNav key={item.rotulo} item={item} />
